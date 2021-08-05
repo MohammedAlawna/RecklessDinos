@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class BasicEnemyMovement : MonoBehaviour
 {
-    [SerializeField] Transform[] waypoints;
+    //[SerializeField] Transform[] waypoints;
+    [SerializeField] Vector2[] waypoints;
     [SerializeField] float moveSpeed = 2f;
     int wayPointIndex = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = waypoints[wayPointIndex].transform.position;
+        transform.position = waypoints[wayPointIndex];
 
     }
 
@@ -24,18 +25,28 @@ public class BasicEnemyMovement : MonoBehaviour
 
     private void ProcessMovement()
     {
-        transform.position = Vector2.MoveTowards(transform.position
-            , waypoints[wayPointIndex].transform.position, moveSpeed * Time.deltaTime);
 
-        if (transform.position == waypoints[wayPointIndex].transform.position)
+        for(wayPointIndex = 0; wayPointIndex < waypoints.Length; wayPointIndex++)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, 
+                waypoints[wayPointIndex], moveSpeed * Time.deltaTime);
+        }
+        if (wayPointIndex == waypoints.Length)
+        {
+            wayPointIndex = 0;
+        }
+        
+
+       /* transform.position = Vector2.MoveTowards(transform.position
+            , waypoints[wayPointIndex], moveSpeed * Time.deltaTime);
+
+        if (transform.position == waypoints[wayPointIndex])
         {
             wayPointIndex += 1;
 
         }
 
-        if (wayPointIndex == waypoints.Length) {
-            wayPointIndex = 0;
-        }
+        */
 
 
     }
