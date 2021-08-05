@@ -8,6 +8,7 @@ public class Parasaur : MonoBehaviour
     [SerializeField] float speed = 550f;
 
     [SerializeField] float chaseDistnace = 5f;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -18,14 +19,21 @@ public class Parasaur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         GameObject player = GameObject.FindWithTag("Player");
-       float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
-        
-        if(distanceToPlayer < chaseDistnace)
+      float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
+        if (GameManager._singletonVar._gameOver || GameManager._singletonVar._gamePaused)
+            return;
+
+
+        if (distanceToPlayer < chaseDistnace)
         {
             print("Chase!");
         }
-
+       
+            PatrolBehavbiour();
+        
+       
 
      /*Detect collision with the bullet/attack came from the player, dec health then!
         if(health <= 0 )
@@ -36,4 +44,7 @@ public class Parasaur : MonoBehaviour
         }
         */
     }
+
+    private void PatrolBehavbiour() { }
+
 }
