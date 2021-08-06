@@ -5,49 +5,37 @@ using UnityEngine;
 
 public class BasicEnemyMovement : MonoBehaviour
 {
-    //[SerializeField] Transform[] waypoints;
-    [SerializeField] Vector2[] waypoints;
-    [SerializeField] float moveSpeed = 2f;
-    int wayPointIndex = 0;
+    [SerializeField] float speed;
+    float rayDistance = 2f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        transform.position = waypoints[wayPointIndex];
+    bool _movingRight = true;
 
-    }
+    [SerializeField] Transform _groundDetection; 
+
 
     // Update is called once per frame
     void Update()
     {
-        ProcessMovement();
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+        RaycastHit2D groundInfo = Physics2D.Raycast(_groundDetection.position, 
+            Vector2.down, rayDistance);
+
+        if(groundInfo.collider == false)
+        {
+            if(_movingRight)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                _movingRight = false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                _movingRight = true;
+            }
+        }
+
     }
 
-    private void ProcessMovement()
-    {
-
-        for(wayPointIndex = 0; wayPointIndex < waypoints.Length; wayPointIndex++)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, 
-                waypoints[wayPointIndex], moveSpeed * Time.deltaTime);
-        }
-        if (wayPointIndex == waypoints.Length)
-        {
-            wayPointIndex = 0;
-        }
-        
-
-       /* transform.position = Vector2.MoveTowards(transform.position
-            , waypoints[wayPointIndex], moveSpeed * Time.deltaTime);
-
-        if (transform.position == waypoints[wayPointIndex])
-        {
-            wayPointIndex += 1;
-
-        }
-
-        */
-
-
-    }
+ 
 }
