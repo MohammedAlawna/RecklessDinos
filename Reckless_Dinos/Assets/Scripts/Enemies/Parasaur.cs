@@ -5,7 +5,7 @@ using UnityEngine;
 public class Parasaur : MonoBehaviour
 {
     [SerializeField] int health = 1;
-    [SerializeField] float speed = 550f;
+   
 
     [SerializeField] float chaseDistnace = 5f;
    
@@ -20,6 +20,7 @@ public class Parasaur : MonoBehaviour
     void Update()
     {
 
+        //This if for chasing. (We'll use it later in advanced UI enemies)
         GameObject player = GameObject.FindWithTag("Player");
       float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
         if (GameManager._singletonVar._gameOver || GameManager._singletonVar._gamePaused)
