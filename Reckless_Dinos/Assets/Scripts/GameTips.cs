@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GameTips : MonoBehaviour
 {
-    bool _showGameTips = false;
+    [SerializeField] bool _showGameTips = false;
 
-    [SerializeField] GameObject _tips;
+    public GameObject _tipsBox;
+    public GameObject _tipsTools;
 
     // Start is called before the first frame update
     void Start()
@@ -19,14 +20,25 @@ public class GameTips : MonoBehaviour
     {
         if(_showGameTips)
         {
-            _tips.SetActive(true);
+            // _tipsBox.SetActive(false);
+            //_tipsBox.gameObject.GetComponent<Renderer>().enabled = false;
+
+            _tipsTools.SetActive(true);
+        }
+        else
+        {
+            // _tipsBox.SetActive(true);
+            //_tipsBox.gameObject.GetComponent<Renderer>().enabled = true;
+            _tipsTools.SetActive(false);
+
         }
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+ 
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             _showGameTips = true;
         }
@@ -35,4 +47,6 @@ public class GameTips : MonoBehaviour
             _showGameTips = false;
         }
     }
+
+   
 }
