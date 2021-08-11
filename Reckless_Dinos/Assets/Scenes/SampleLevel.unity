@@ -1915,6 +1915,7 @@ GameObject:
   - component: {fileID: 604081120}
   - component: {fileID: 604081121}
   - component: {fileID: 604081122}
+  - component: {fileID: 604081123}
   m_Layer: 0
   m_Name: _tipsBox
   m_TagString: Untagged
@@ -2044,6 +2045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be515d9bda29f5d4b9f7cccf62f8b6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showGameTips: 0
   _tipsBox: {fileID: 604081116}
   _tipsTools: {fileID: 630604160}
 --- !u!225 &604081122
@@ -2058,6 +2060,27 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!50 &604081123
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604081116}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &630604160
 GameObject:
   m_ObjectHideFlags: 0

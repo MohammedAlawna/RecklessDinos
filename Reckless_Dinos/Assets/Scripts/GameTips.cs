@@ -42,11 +42,13 @@ public class GameTips : MonoBehaviour
         {
             _showGameTips = true;
         }
-        else
-        {
-            _showGameTips = false;
-        }
+      
     }
 
-   
+    private void OnTriggerExit2D(Collider2D collision)
+    {      
+     _showGameTips = false;   
+    }
+
+
 }
