@@ -21,14 +21,14 @@ public class GameTips : MonoBehaviour
         if(_showGameTips)
         {
             // _tipsBox.SetActive(false);
-            //_tipsBox.gameObject.GetComponent<Renderer>().enabled = false;
+            _tipsBox.gameObject.GetComponent<Renderer>().enabled = false;
 
             _tipsTools.SetActive(true);
         }
         else
         {
             // _tipsBox.SetActive(true);
-            //_tipsBox.gameObject.GetComponent<Renderer>().enabled = true;
+            _tipsBox.gameObject.GetComponent<Renderer>().enabled = true;
             _tipsTools.SetActive(false);
 
         }
