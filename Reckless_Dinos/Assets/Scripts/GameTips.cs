@@ -20,44 +20,51 @@ public class GameTips : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_showGameTips && !_showCoinTips)
-        {
-            // _tipsBox.SetActive(false);
-            _tipsBox.gameObject.GetComponent<Renderer>().enabled = false;
-
-            _tipsTools.SetActive(true);
-            _coinTipsBox.SetActive(false);
-        }
-        if(_showCoinTips && !_showGameTips)
+       
+         if(_showCoinTips)
         {
             _tipsBox.gameObject.GetComponent<Renderer>().enabled = false;
             _tipsTools.SetActive(false);
             _coinTipsBox.SetActive(true);
         }
-       /* else
-        {
-            // _tipsBox.SetActive(true);
-            _tipsBox.gameObject.GetComponent<Renderer>().enabled = true;
-            _tipsTools.SetActive(false);
-            _coinTipsBox.SetActive(false);
 
-        }*/
-       else if(_showCoinTips && _showGameTips == false)
+        else if (_showGameTips)
+        {
+            // _tipsBox.SetActive(false);
+            _tipsTools.SetActive(true);
+            _tipsBox.gameObject.GetComponent<Renderer>().enabled = false;
+
+
+            //_coinTipsBox.SetActive(false);
+        }
+
+
+        else
         {
             // _tipsBox.SetActive(true);
             _tipsBox.gameObject.GetComponent<Renderer>().enabled = true;
             _tipsTools.SetActive(false);
             _coinTipsBox.SetActive(false);
         }
-        
+
     }
 
  
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        _showCoinTips = false;
-        _showGameTips = false;
+        if(collision.gameObject.tag == "Player" && gameObject.name == "TipsBox")
+        {
+            Debug.Log("Collided with TipsBox");
+            _showGameTips = true;
+        }
+
+        if(collision.gameObject.tag == "Player" && gameObject.name == "CoinTipsBox")
+        {
+            Debug.Log("Collided with CoinsTipsBox");
+            _showCoinTips = true;
+        }
+        
 
        
         /*
@@ -70,16 +77,12 @@ public class GameTips : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {      
-        if(gameObject.name == "TipsBox")
-        {
+      
             _showGameTips = false;
-        }
-       
-
-        if (gameObject.name == "CoinTipsBox")
-        {
+      
+     
             _showCoinTips = false;
-        } 
+      
        
        
     }
