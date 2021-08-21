@@ -7,8 +7,8 @@ public class TipsManager : MonoBehaviour
     [SerializeField] bool _showGameTips = false;
    
 
-    public GameObject _tipsBox;
-    public GameObject _tipsToShow;
+    [SerializeField] GameObject _tipsBox;
+    [SerializeField] GameObject _tipsToShow;
    
     // Start is called before the first frame update
     void Start()
