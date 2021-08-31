@@ -16,6 +16,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Follow()
     {
+        if (GameManager._singletonVar._gameOver) return;
         Vector3 targetPos = target.position + offset;
         Vector3 smoothedPos = Vector3.Lerp(transform.position, targetPos
             , sFactor * Time.fixedDeltaTime);

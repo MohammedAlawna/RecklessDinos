@@ -98,6 +98,17 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "water")
+        {
+            Debug.Log("Hello dere!");
+            //GameManager._singletonVar._currentHealth = 0;
+        }
     }
 
 
