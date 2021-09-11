@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "water")
         {
             Debug.Log("Hello dere!");
+            GameManager._singletonVar._gameOver = true;
             //GameManager._singletonVar._currentHealth = 0;
         }
     }
