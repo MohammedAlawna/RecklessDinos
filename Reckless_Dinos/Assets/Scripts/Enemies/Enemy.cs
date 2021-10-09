@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Parasaur : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [Range(0, 10)]
     [SerializeField] int chaseSpeed = 1;
