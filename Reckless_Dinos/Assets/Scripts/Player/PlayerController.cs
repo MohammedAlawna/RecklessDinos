@@ -110,6 +110,8 @@ public class PlayerController : MonoBehaviour
             GameManager._singletonVar._gameOver = true;
             //GameManager._singletonVar._currentHealth = 0;
         }
+
+        
     }
 
 
