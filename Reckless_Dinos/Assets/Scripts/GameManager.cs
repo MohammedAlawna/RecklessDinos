@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public int _noKnives = 0; 
     public bool _gamePaused = false;
     public bool _gameOver = false;
+    
 
     //Process Singleton Pattern. 
     public static GameManager _singletonVar;
