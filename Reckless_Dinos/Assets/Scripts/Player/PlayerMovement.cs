@@ -40,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
         {
             _jump = true;
             _animator.SetBool("isJumping", _jump);
-            //rb2d.AddForce(new Vector2(0, _jumpSpeed));
+            rb2d.AddForce(new Vector2(0, _jumpSpeed));
             // rb2d.velocity += new Vector2(0f, _jumpSpeed);
-            transform.Translate(new Vector3(0f, _jumpSpeed * Time.deltaTime));
+           
         }
     }
 
