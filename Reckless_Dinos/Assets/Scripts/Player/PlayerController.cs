@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Hello dere!");
             GameManager._singletonVar._gameOver = true;
+            //TODO coin collection SFX.
             //GameManager._singletonVar._currentHealth = 0;
         }
 
