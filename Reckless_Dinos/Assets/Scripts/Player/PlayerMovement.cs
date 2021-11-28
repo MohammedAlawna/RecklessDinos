@@ -40,7 +40,9 @@ public class PlayerMovement : MonoBehaviour
         {
             _jump = true;
             _animator.SetBool("isJumping", _jump);
-            rb2d.AddForce(new Vector2(0, _jumpSpeed));
+            //rb2d.AddForce(new Vector2(0, _jumpSpeed));
+            // rb2d.velocity += new Vector2(0f, _jumpSpeed);
+            transform.Translate(new Vector3(0f, _jumpSpeed * Time.deltaTime));
         }
     }
 
@@ -61,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
 
+
     }
 
 
@@ -79,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float move)
     {
-        Vector2 targetVelocity = new Vector2(move * 10f,rb2d.velocity.y);
+        Vector2 targetVelocity = new Vector2(move * 10f, rb2d.velocity.y);
         // And then smoothing it out and applying it to the character
         rb2d.velocity = Vector2.SmoothDamp(rb2d.velocity, targetVelocity, 
             ref m_Velocity, m_MovementSmoothing);
