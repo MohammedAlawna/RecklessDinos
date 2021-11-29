@@ -9060,17 +9060,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1668662402945609896, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
-      propertyPath: _jumpSpeed
-      value: 10000
+    - target: {fileID: 1340159474, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1edce6611c68d5042a2ba9d8f96bfebb, type: 2}
+    - target: {fileID: 1340159475, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: lengthInSec
+      value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 1668662402945609897, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
-      propertyPath: m_Mass
-      value: 2
+    - target: {fileID: 1340159475, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1668662402945609897, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
-      propertyPath: m_GravityScale
-      value: 1.5
+    - target: {fileID: 1340159475, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: VelocityModule.inWorldSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340159475, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340159475, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340159475, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1668662402945609900, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: m_RootOrder
@@ -9116,10 +9132,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1668662402945609903, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
-      propertyPath: _knifePrefab
-      value: 
-      objectReference: {fileID: 8980661665116992711, guid: 06fa30c8daf961e4da3c8e6b86dd3152, type: 3}
     - target: {fileID: 1668662402945611602, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: m_Name
       value: Player

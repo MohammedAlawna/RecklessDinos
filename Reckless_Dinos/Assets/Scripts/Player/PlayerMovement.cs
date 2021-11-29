@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [Range(0, 1)] float m_MovementSmoothing;
     Vector2 m_Velocity = Vector3.zero;
 
+    public ParticleSystem dust; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         if (CrossPlatformInputManager.GetButtonDown("Jump") && rb2d.velocity.y == 0)
         {
             _jump = true;
+           
             _animator.SetBool("isJumping", _jump);
             rb2d.AddForce(new Vector2(0, _jumpSpeed));
             // rb2d.velocity += new Vector2(0f, _jumpSpeed);
@@ -71,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _jump = false;
         _animator.SetBool("isJumping", _jump);
+        StartCoroutine(ProcessDustCreationWithDelay(0.5f));
     }
 
     // TODO
@@ -90,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Flip()
     {
+        StartCoroutine(ProcessDustCreationWithDelay(0.5f));
         _pFacingRight = !_pFacingRight;
 
         Vector3 _flippedScale = transform.localScale;
@@ -105,5 +110,13 @@ public class PlayerMovement : MonoBehaviour
     public void SetDeadAnimation()
     {
         _animator.SetBool("isDead", true);
+    }
+
+
+    IEnumerator ProcessDustCreationWithDelay(float delayTime)
+    {
+        dust.Play();
+        yield return new WaitForSeconds(delayTime);
+        dust.Stop();
     }
 }
