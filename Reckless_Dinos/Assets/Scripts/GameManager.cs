@@ -26,9 +26,7 @@ public class GameManager : MonoBehaviour
 
     //Process Singleton Pattern. 
     public static GameManager _singletonVar;
-
  
-
 
     // Start is called before the first frame update
     void Start()

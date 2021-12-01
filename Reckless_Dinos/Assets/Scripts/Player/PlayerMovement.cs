@@ -40,12 +40,12 @@ public class PlayerMovement : MonoBehaviour
         
         if (CrossPlatformInputManager.GetButtonDown("Jump") && rb2d.velocity.y == 0)
         {
+
+            AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
             _jump = true;
-           
             _animator.SetBool("isJumping", _jump);
             rb2d.AddForce(new Vector2(0, _jumpSpeed));
             // rb2d.velocity += new Vector2(0f, _jumpSpeed);
-           
         }
     }
 
@@ -66,15 +66,16 @@ public class PlayerMovement : MonoBehaviour
 
         rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
 
-
     }
 
 
     public void OnLadning()
     {
         _jump = false;
+       
         _animator.SetBool("isJumping", _jump);
         StartCoroutine(ProcessDustCreationWithDelay(0.5f));
+        //AudioManager.i.PlaySound(AudioManager.i.gameSFX[1]);
     }
 
     // TODO

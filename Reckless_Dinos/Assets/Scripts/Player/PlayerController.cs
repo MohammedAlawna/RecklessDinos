@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
 
         if(collision.collider.tag == "Coin")
         {
+            AudioManager.i.PlaySound(AudioManager.i.gameSFX[3]);
             GameManager._singletonVar.IncrementScore(1);
             Destroy(collision.gameObject);
 
@@ -108,7 +109,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Hello dere!");
             GameManager._singletonVar._gameOver = true;
-            //TODO coin collection SFX.
+            
             //GameManager._singletonVar._currentHealth = 0;
         }
 
