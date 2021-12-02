@@ -41,9 +41,11 @@ public class PlayerMovement : MonoBehaviour
         if (CrossPlatformInputManager.GetButtonDown("Jump") && rb2d.velocity.y == 0)
         {
 
-            AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
+           
             _jump = true;
+          
             _animator.SetBool("isJumping", _jump);
+            AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
             rb2d.AddForce(new Vector2(0, _jumpSpeed));
             // rb2d.velocity += new Vector2(0f, _jumpSpeed);
         }

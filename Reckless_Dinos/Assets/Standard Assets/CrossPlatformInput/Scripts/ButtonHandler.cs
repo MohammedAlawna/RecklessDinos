@@ -1,5 +1,8 @@
 using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
@@ -21,6 +24,8 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         public void SetUpState()
         {
+            
+           
             CrossPlatformInputManager.SetButtonUp(Name);
         }
 
