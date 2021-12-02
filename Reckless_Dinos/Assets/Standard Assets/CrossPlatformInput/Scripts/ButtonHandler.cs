@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+
 namespace UnityStandardAssets.CrossPlatformInput
 {
     public class ButtonHandler : MonoBehaviour
@@ -24,8 +25,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         public void SetUpState()
         {
-            
-           
+
             CrossPlatformInputManager.SetButtonUp(Name);
         }
 

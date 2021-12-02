@@ -38,12 +38,12 @@ public class PlayerMovement : MonoBehaviour
         //_dirX = Input.GetAxisRaw("Horizontal") * _moveSpeed;
         _animator.SetFloat("Speed", Mathf.Abs(_dirX));
         
+
         if (CrossPlatformInputManager.GetButtonDown("Jump") && rb2d.velocity.y == 0)
         {
 
-           
+            AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
             _jump = true;
-          
             _animator.SetBool("isJumping", _jump);
             AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
             rb2d.AddForce(new Vector2(0, _jumpSpeed));
