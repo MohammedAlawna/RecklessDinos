@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _jumpSpeed = 100f;
     float _dirX;
 
+    public bool _isMoving = false;
     public bool _jump = false;
     bool _pFacingRight = true;
 
@@ -67,7 +68,9 @@ public class PlayerMovement : MonoBehaviour
      }
 
         rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
+      
 
+      
     }
 
 
