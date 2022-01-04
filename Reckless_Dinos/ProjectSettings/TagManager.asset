@@ -9,6 +9,7 @@ TagManager:
   - ArrowTips
   - CoinTips
   - water
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -98,6 +98,11 @@ public class PlayerController : MonoBehaviour
             Destroy(vfxObject, 0.57f);
 
         }
+        if(collision.collider.tag == "Door")
+        {
+            /*Process Level Done Function!
+            GameManager._singletonVar.ShowGameWinnerPanel();*/
+        }
 
         
 
