@@ -98,8 +98,8 @@ public class PlayerController : MonoBehaviour
         }
         if(collision.collider.tag == "Door")
         {
-            /*Process Level Done Function!
-            GameManager._singletonVar.ShowGameWinnerPanel();*/
+            
+            GameManager._singletonVar.ShowGameWinnerPanel();
         }
 
         

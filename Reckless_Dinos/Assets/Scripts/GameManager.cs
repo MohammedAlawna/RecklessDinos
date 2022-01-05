@@ -67,10 +67,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(showPanelAfterDelay(_gameOverPanel));
     }
 
-   /* public void ShowGameWinnerPanel()
+   public void ShowGameWinnerPanel()
     {
         StartCoroutine(showPanelAfterDelay(_gameWinnerPanel));
-    }*/
+    }
 
     void SetHighestScore()
     {
