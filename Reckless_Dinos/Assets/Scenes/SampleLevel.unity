@@ -10233,6 +10233,14 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1668662402945609896, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668662402945609896, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: _jumpSpeed
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 1668662402945609900, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: m_RootOrder
       value: 6

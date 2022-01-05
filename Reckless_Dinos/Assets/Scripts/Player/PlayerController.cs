@@ -6,8 +6,6 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-
-
     public PlayerMovement _movement;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Transform _ceilingCheck;

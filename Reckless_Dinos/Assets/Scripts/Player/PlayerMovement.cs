@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void Update()
+   /* private void Update()
     {
         if (GameManager._singletonVar._gamePaused ||
             GameManager._singletonVar._gameOver) return;
@@ -47,18 +47,39 @@ public class PlayerMovement : MonoBehaviour
             _jump = true;
             _animator.SetBool("isJumping", _jump);
             AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
-            rb2d.AddForce(new Vector2(0, _jumpSpeed));
+            rb2d.AddForce(Vector2.up * _jumpSpeed,
+                ForceMode2D.Impulse);
+           // rb2d.AddForce(new Vector2(0, _jumpSpeed));
             // rb2d.velocity += new Vector2(0f, _jumpSpeed);
         }
-    }
+    }*/
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (GameManager._singletonVar._gamePaused ||
-            GameManager._singletonVar._gameOver) return; 
-       
-        
-     if(_dirX > 0 && !_pFacingRight )
+            GameManager._singletonVar._gameOver) return;
+
+        if (GameManager._singletonVar._gamePaused ||
+          GameManager._singletonVar._gameOver) return;
+        _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
+        //_dirX = Input.GetAxisRaw("Horizontal") * _moveSpeed;
+        _animator.SetFloat("Speed", Mathf.Abs(_dirX));
+
+
+        if (CrossPlatformInputManager.GetButtonDown("Jump") &&
+            rb2d.velocity.y == 0)
+        {
+
+            AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
+            _jump = true;
+            _animator.SetBool("isJumping", _jump);
+            AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
+           // rb2d.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
+             rb2d.AddForce(new Vector2(0, _jumpSpeed));
+            // rb2d.velocity += new Vector2(0f, _jumpSpeed);
+        }
+
+        if (_dirX > 0 && !_pFacingRight )
      {
             Flip();
      } 
