@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb2d;
 
     [SerializeField] float _moveSpeed = 40f;
-    [SerializeField] float _jumpSpeed = 100f;
+    [SerializeField] float _jumpFactor = 100f;
     float _dirX;
 
     public bool _isMoving = false;
@@ -54,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("isJumping", _jump);
             AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
             //rb2d.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
-             rb2d.AddForce(new Vector2(0, _jumpSpeed));
+             //rb2d.AddForce(new Vector2(0, _jumpSpeed));
+            rb2d.velocity = Vector2.up * _jumpFactor;
             // rb2d.velocity += new Vector2(0f, _jumpSpeed);
         }
 
