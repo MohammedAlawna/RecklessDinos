@@ -1,5 +1,6 @@
 # RecklessDinos
-![RecklessDinosLogoDeved](https://user-images.githubusercontent.com/88289155/175792471-e077c7a5-607b-4b19-a01a-08bc369aecf2.png)
+![image](https://user-images.githubusercontent.com/88289155/176802741-cfbb44e3-fbb8-41d9-bb70-184742edbb64.png)
+
 
 # Preface
 - Enjoy the trial of our simple 2D-adventure game! This game was made by Unity3D. All of the in-game characgers assets was purchased
