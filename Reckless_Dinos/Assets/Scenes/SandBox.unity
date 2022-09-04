@@ -508,7 +508,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5234583775414174657}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: trialJump, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 1
@@ -681,9 +681,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5234583775414174784}
   - component: {fileID: 5234583775414174785}
-  - component: {fileID: 5234583775414174655}
   - component: {fileID: 5234583775414174656}
-  - component: {fileID: 5234583775414174657}
+  - component: {fileID: 5234583775414174655}
+  - component: {fileID: 5234583775414174658}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -706,9 +706,9 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -738,7 +738,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.0109828, y: 4.724555}
   m_EdgeRadius: 0
---- !u!114 &5234583775414174657
+--- !u!114 &5234583775414174658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -747,11 +747,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5234583775414174654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89ce4ae87ae0f77449f19fbf782be276, type: 3}
+  m_Script: {fileID: 11500000, guid: 93a03b8be8dd66a4fbef796179ebc30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpSpeed: 10
-  _goJump: 0
 --- !u!4 &5234583775414174784
 Transform:
   m_ObjectHideFlags: 0

@@ -454,17 +454,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150963876}
   m_CullTransparentMesh: 1
---- !u!114 &171805701 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1668662402945609896, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
-  m_PrefabInstance: {fileID: 1668662403113614509}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2271290aab4b2344bddbddad4d35f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &186624024
 GameObject:
   m_ObjectHideFlags: 0
@@ -7290,6 +7279,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.52874875, y: 12.157421}
   m_EdgeRadius: 0
+--- !u!198 &1502212307 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1340159475, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+  m_PrefabInstance: {fileID: 1668662403113614509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1505494923
 GameObject:
   m_ObjectHideFlags: 0
@@ -8221,7 +8215,7 @@ MonoBehaviour:
   currentScoreText: {fileID: 993100147}
   currentHealthText: {fileID: 1593429848}
   noKnivesText: {fileID: 0}
-  _pMove: {fileID: 171805701}
+  _pMove: {fileID: 0}
   highestScoreText: {fileID: 0}
   _gameOverPanel: {fileID: 458283181}
   _gameWinnerPanel: {fileID: 644982921}
@@ -8628,6 +8622,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6b010142ff6664387fa5b1a8c366e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1919119282 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1668662402945609899, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+  m_PrefabInstance: {fileID: 1668662403113614509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1937927139
 GameObject:
   m_ObjectHideFlags: 0
@@ -10245,14 +10244,6 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1668662402945609896, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1668662402945609896, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
-      propertyPath: _jumpSpeed
-      value: 10000
-      objectReference: {fileID: 0}
     - target: {fileID: 1668662402945609900, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -10296,6 +10287,34 @@ PrefabInstance:
     - target: {fileID: 1668662402945609900, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668662402945609903, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: dust
+      value: 
+      objectReference: {fileID: 1502212307}
+    - target: {fileID: 1668662402945609903, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 1919119282}
+    - target: {fileID: 1668662402945609903, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: _moveSpeed
+      value: 435
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668662402945609903, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: _jumpFactor
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668662402945609903, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: onLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1912142672}
+    - target: {fileID: 1668662402945609903, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: onLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLadning
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668662402945609903, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: onLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1668662402945611602, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: m_Name

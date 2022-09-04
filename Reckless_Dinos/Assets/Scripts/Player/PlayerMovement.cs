@@ -31,8 +31,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-   
-
     private void Update()
     {
         if (GameManager._singletonVar._gamePaused ||
@@ -69,9 +67,6 @@ public class PlayerMovement : MonoBehaviour
      }
 
         rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
-      
-
-      
     }
 
 

@@ -4846,7 +4846,6 @@ GameObject:
   - component: {fileID: 1668662402945609901}
   - component: {fileID: 1668662402945609897}
   - component: {fileID: 1668662402945609903}
-  - component: {fileID: 1668662402945609896}
   - component: {fileID: 1668662402945609899}
   - component: {fileID: 1668662402945609898}
   m_Layer: 3
@@ -4957,7 +4956,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6b010142ff6664387fa5b1a8c366e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movement: {fileID: 1668662402945609896}
+  _animator: {fileID: 0}
+  _moveSpeed: 40
+  _jumpFactor: 100
+  _isMoving: 0
+  _jump: 0
+  m_MovementSmoothing: 0
+  dust: {fileID: 0}
+  _movement: {fileID: 0}
   _groundCheck: {fileID: 1668662403225878743}
   _ceilingCheck: {fileID: 1668662401748637568}
   _groundRadius: 0.2
@@ -4972,7 +4978,7 @@ MonoBehaviour:
   onLandEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1668662402945609896}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: OnLadning
         m_Mode: 1
@@ -4984,24 +4990,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1668662402945609896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668662402945611602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2271290aab4b2344bddbddad4d35f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 1668662402945609899}
-  _moveSpeed: 465
-  _jumpSpeed: 10000
-  _jump: 0
-  m_MovementSmoothing: 0
-  dust: {fileID: 1340159475}
 --- !u!95 &1668662402945609899
 Animator:
   serializedVersion: 3
