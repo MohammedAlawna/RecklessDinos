@@ -6,12 +6,15 @@ public class Controller : MonoBehaviour
 {
     Rigidbody2D rb; 
     int _jumpPower;
+
+    
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
 
     // Update is called once per frame
     void Update()
