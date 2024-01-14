@@ -94,13 +94,13 @@ public class PlayerController : MonoBehaviour
         _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
         //_dirX = Input.GetAxisRaw("Horizontal") * _moveSpeed;
         _animator.SetFloat("Speed", Mathf.Abs(_dirX));
-
+        _animator.SetBool("Run", true);
 
         if (CrossPlatformInputManager.GetButtonDown("Jump") &&
             rb2d.velocity.y == 0)
         {
 
- rb2d.velocity = Vector2.up * _jumpFactor;
+            rb2d.velocity = Vector2.up * _jumpFactor;
             AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
             _jump = true;
             _animator.SetBool("isJumping", _jump);
@@ -110,17 +110,26 @@ public class PlayerController : MonoBehaviour
            
             // rb2d.velocity += new Vector2(0f, _jumpSpeed);
         }
+        
+        rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
+        if(_dirX == 0){
+            _animator.SetBool("Run", false);
+        }
 
         if (_dirX > 0 && !_pFacingRight )
-     {
+        {
             Flip();
-     } 
-     if(_dirX < 0 && _pFacingRight)
-     {
-            Flip();
-     }
+            _animator.SetBool("Run", true);
+        }
 
-        rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
+     if(_dirX < 0 && _pFacingRight)
+        {
+            _animator.SetBool("Run", true);
+            Flip();
+        }
+        
+
+        
     }
 
     public void OnLadning()
@@ -173,7 +182,7 @@ public void Attack()
         transform.localScale = _flippedScale;
     }
 
- public void FreezePosition()
+    public void FreezePosition()
     {
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
     }

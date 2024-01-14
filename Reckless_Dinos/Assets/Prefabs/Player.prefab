@@ -4845,9 +4845,9 @@ GameObject:
   - component: {fileID: 1668662402945609900}
   - component: {fileID: 1668662402945609901}
   - component: {fileID: 1668662402945609899}
-  - component: {fileID: 7002241532689882050}
   - component: {fileID: 652254527993552396}
-  - component: {fileID: 1030659198874126880}
+  - component: {fileID: 1652320405}
+  - component: {fileID: 8711195691831700014}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -4943,27 +4943,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!50 &7002241532689882050
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668662402945611602}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &652254527993552396
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4990,7 +4969,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.999075, y: 4.6662207}
   m_EdgeRadius: 0
---- !u!114 &1030659198874126880
+--- !u!50 &1652320405
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668662402945611602}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: f70e8906598b131409cadf19e3d6d7fe, type: 2}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &8711195691831700014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4999,14 +4999,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1668662402945611602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93a03b8be8dd66a4fbef796179ebc30a, type: 3}
+  m_Script: {fileID: 11500000, guid: ce6b010142ff6664387fa5b1a8c366e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 600
-  kniveSpeed: 500
-  barrel: {fileID: 1412226419662515697}
-  knive: {fileID: 8980661665116992711, guid: 06fa30c8daf961e4da3c8e6b86dd3152, type: 3}
+  _animator: {fileID: 1668662402945609899}
+  _moveSpeed: 250
+  _jumpFactor: 100
+  _isMoving: 0
+  _jump: 0
+  m_MovementSmoothing: 0.08
+  dust: {fileID: 1340159475}
+  _movement: {fileID: 0}
+  _groundCheck: {fileID: 1668662403225878743}
+  _ceilingCheck: {fileID: 1668662401748637568}
+  _groundRadius: 0.2
+  _whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  _immuneDuration: 0.35
+  projectileSpeed: 10
+  _isImmune: 0
+  _coinNumbPrefab: {fileID: 0}
+  _knifePrefab: {fileID: 8980661665116992711, guid: 06fa30c8daf961e4da3c8e6b86dd3152, type: 3}
+  onLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1668662403225878740
 GameObject:
   m_ObjectHideFlags: 0

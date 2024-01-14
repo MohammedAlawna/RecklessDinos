@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,9 +39,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (GameManager._singletonVar._gamePaused ||
           GameManager._singletonVar._gameOver) return;
+
+          //Process Horizontal Movement (Left and Right)..
+
         _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
         //_dirX = Input.GetAxisRaw("Horizontal") * _moveSpeed;
-        _animator.SetFloat("Speed", Mathf.Abs(_dirX));
+         _animator.SetFloat("Speed", Mathf.Abs(_dirX));
+      /*  if(rb2d.velocity.x > 0){
+         _animator.SetBool("Run", true);
+        }
+        else {
+            _animator.SetBool("Run", false);
+        }*/
+      
 
 
         if (CrossPlatformInputManager.GetButtonDown("Jump") &&
@@ -67,6 +78,10 @@ public class PlayerMovement : MonoBehaviour
      }
 
         rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
+
+        if(_dirX > 0 || _dirX < 0){
+           Console.WriteLine("Player moving.. o3o");
+        }
     }
 
 
