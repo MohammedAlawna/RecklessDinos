@@ -3071,12 +3071,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10195,6 +10195,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1652320405, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652320405, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652320405, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652320405, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652320405, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1668662402945609900, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -10246,6 +10266,10 @@ PrefabInstance:
     - target: {fileID: 8711195691831700014, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: _moveSpeed
       value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711195691831700014, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
+      propertyPath: _jumpFactor
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8711195691831700014, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: _coinNumbPrefab

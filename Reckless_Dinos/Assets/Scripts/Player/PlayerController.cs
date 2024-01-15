@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _moveSpeed = 40f;
     [SerializeField] float _jumpFactor = 100f;
     float _dirX;
+    float _dirY;
     public bool _isMoving = false;
     public bool _jump = false;
     bool _pFacingRight = true;
@@ -92,29 +93,37 @@ public class PlayerController : MonoBehaviour
         if (GameManager._singletonVar._gamePaused ||
           GameManager._singletonVar._gameOver) return;
         _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
+        _dirY = CrossPlatformInputManager.GetAxis("Vertical") * _jumpFactor;
+
         //_dirX = Input.GetAxisRaw("Horizontal") * _moveSpeed;
         _animator.SetFloat("Speed", Mathf.Abs(_dirX));
         _animator.SetBool("Run", true);
 
-        if (CrossPlatformInputManager.GetButtonDown("Jump") &&
-            rb2d.velocity.y == 0)
+        if (CrossPlatformInputManager.GetButtonDown("Jump") )
         {
+            //&& rb2d.velocity.y == 0
 
-            rb2d.velocity = Vector2.up * _jumpFactor;
+            Debug.Log("Current Y: " + rb2d.transform.position.y);
+            transform.Translate(0f, transform.position.y + _jumpFactor * Time.fixedDeltaTime, 0f);    
+         /*   rb2d.velocity = Vector2.up * _jumpFactor;
             AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
             _jump = true;
             _animator.SetBool("isJumping", _jump);
             AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
-            //rb2d.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
-             //rb2d.AddForce(new Vector2(0, _jumpSpeed));
-           
-            // rb2d.velocity += new Vector2(0f, _jumpSpeed);
+            //rb2d.AddForce(Vector2.up * _jumpFactor, ForceMode2D.Impulse);
+            //rb2d.AddForce(new Vector2(0, _jumpFactor));
+           rb2d.AddForce(new Vector2(0 ,_dirY * Time.fixedDeltaTime));
+             //rb2d.velocity = new Vector2(0f, _jumpFactor);*/
         }
         
         rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
+
+
+        //Process Left, Right Animation and Flipping player side when needed..
         if(_dirX == 0){
             _animator.SetBool("Run", false);
         }
+
 
         if (_dirX > 0 && !_pFacingRight )
         {
@@ -131,6 +140,12 @@ public class PlayerController : MonoBehaviour
 
         
     }
+
+    public void JumpButtonClicked(){
+        //Vector2 jumpingVector = new Vector2(0f, 2f);
+        rb2d.AddForce(Vector2.up * _jumpFactor, ForceMode2D.Impulse);	
+    }
+
 
     public void OnLadning()
     {
