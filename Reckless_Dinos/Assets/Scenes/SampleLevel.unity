@@ -10250,7 +10250,7 @@ PrefabInstance:
     - target: {fileID: 8711195691831700014, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: _coinNumbPrefab
       value: 
-      objectReference: {fileID: 386229343}
+      objectReference: {fileID: 8972827865772801221, guid: 7af06cd99cc651349a28872620a3b329, type: 3}
     - target: {fileID: 8711195691831700014, guid: eab47da315a2d6c49a878ac5c0ab3fca, type: 3}
       propertyPath: m_MovementSmoothing
       value: 1

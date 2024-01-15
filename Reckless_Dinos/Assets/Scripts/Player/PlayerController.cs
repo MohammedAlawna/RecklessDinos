@@ -216,11 +216,12 @@ public void Attack()
         {
             AudioManager.i.PlaySound(AudioManager.i.gameSFX[3]);
             GameManager._singletonVar.IncrementScore(1);
-            Destroy(collision.gameObject);
+            
 
             var vfxObject = Instantiate(_coinNumbPrefab, collision.collider.transform.position, 
                 Quaternion.identity);
-            Destroy(vfxObject, 0.57f);
+            Destroy(vfxObject, 0.23f);
+            Destroy(collision.gameObject);
 
         }
         if(collision.collider.tag == "Door")
