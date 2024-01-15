@@ -93,11 +93,11 @@ public class PlayerController : MonoBehaviour
         if (GameManager._singletonVar._gamePaused ||
           GameManager._singletonVar._gameOver) return;
         _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
-        _dirY = CrossPlatformInputManager.GetAxis("Vertical") * _jumpFactor;
+        //_dirY = CrossPlatformInputManager.GetAxis("Vertical") * _jumpFactor;
 
         //_dirX = Input.GetAxisRaw("Horizontal") * _moveSpeed;
         _animator.SetFloat("Speed", Mathf.Abs(_dirX));
-        _animator.SetBool("Run", true);
+        //_animator.SetBool("Run", true);
 
         if (CrossPlatformInputManager.GetButtonDown("Jump") )
         {
