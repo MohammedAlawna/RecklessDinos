@@ -182,7 +182,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-
         //If Collided with Coin:
         if(other.tag == "Coin"){
             AudioManager.i.PlaySound(AudioManager.i.gameSFX[3]);
