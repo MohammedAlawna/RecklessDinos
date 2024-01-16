@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject _coinNumbPrefab;
     [SerializeField] GameObject _knifePrefab; 
+
+    [SerializeField] GameObject _groundCheck; 
    
 
    // [Header("EventSystem")]
@@ -89,9 +91,18 @@ public class PlayerController : MonoBehaviour
     }
 
     public void ProcessJump(){
-        Debug.Log("Tammmoun is jumping..");
+
+        //Algorithm for Jumping (Movement, Animation, Ladning..)
+        //1- Check If Player on the groud => isJumping = false (if Grounded)
+
+        //2- Check if Player isJumping => isJumping = true (if !Grounded, p is jumping)
+
+        //3- Check further of the player status.. o3o
+
+        //Debug.Log("Tammmoun is jumping..");
         _isJumping = true;
         rb2d.AddForce(new Vector2(0f, jumpingFactor) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        
     }
 
     void ProcessJumping(){
@@ -123,10 +134,10 @@ public class PlayerController : MonoBehaviour
         if (GameManager._singletonVar._gamePaused ||
           GameManager._singletonVar._gameOver) return;
 
-        if(CrossPlatformInputManager.GetButtonDown("Jump")){
+    /*    if(CrossPlatformInputManager.GetButtonDown("Jump")){
             Debug.Log("Checking....");
             rb2d.AddForce(new Vector2(0f, jumpingFactor) * Time.fixedDeltaTime, ForceMode2D.Impulse);
-        }
+        }*/
 
         _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
         //_dirY = CrossPlatformInputManager.GetAxis("Vertical") * _jumpFactor;
@@ -237,6 +248,14 @@ public void Attack()
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Check if Grounded
+        if(collision.collider.tag == "Ground"){
+            Debug.Log("You Are Grounded to Tammoun..!");
+            _isJumping = false;
+        }
+        if(collision.collider.tag != "Ground"){
+            _isJumping = true;
+        }
 
         //TODO Add immune duratrion (with some blinking to the player)
         //TODO Don't forget enemyAI script! 
