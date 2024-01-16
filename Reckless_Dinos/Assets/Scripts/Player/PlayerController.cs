@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
 {
     [Header("PlayerMovement")]
     public Animator _animator;
-    Rigidbody2D rb2d;
     [SerializeField] float _moveSpeed = 40f;
-    [SerializeField] float _jumpFactor = 100f;
+    [SerializeField] float jumpingFactor = 800f; 
+    Rigidbody2D rb2d;
     float _dirX;
     float _dirY;
     public bool _isMoving = false;
-    public bool _jump = false;
+    public bool _isJumping = false;
     bool _pFacingRight = true;
     [SerializeField] [Range(0, 1)] float m_MovementSmoothing;
     Vector2 m_Velocity = Vector3.zero;
@@ -24,30 +24,30 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("PlayerController")]
-    public PlayerMovement _movement;
-    [SerializeField] private Transform _groundCheck;
-    [SerializeField] private Transform _ceilingCheck;
-    [SerializeField] private float _groundRadius = 0.2f;
-    [SerializeField] private LayerMask _whatIsGround;
+    //public PlayerMovement _movement;
+    //[SerializeField] private Transform _groundCheck;
+    //[SerializeField] private Transform _ceilingCheck;
+    //[SerializeField] private float _groundRadius = 0.2f;
+   // [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] float _immuneDuration = 0.35f;
     [SerializeField] float projectileSpeed = 10f;
 
-    bool _pGrounded;
+    //bool _pGrounded;
     [SerializeField] bool _isImmune = false;
 
     [SerializeField] GameObject _coinNumbPrefab;
     [SerializeField] GameObject _knifePrefab; 
    
 
-    [Header("EventSystem")]
-    public UnityEvent onLandEvent;
+   // [Header("EventSystem")]
+   // public UnityEvent onLandEvent;
     
 
     /* [System.Serializable]
      public class BoolEvent: UnityEvent<bool> { }
      public BoolEvent onSlidingEvent;*/
 
-    private void Awake()
+   /* private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         if(onLandEvent == null)
@@ -55,17 +55,19 @@ public class PlayerController : MonoBehaviour
             onLandEvent = new UnityEvent();
         }
 
-    }
+    }*/
 
 
     void Start() {
-        
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
-        ProcessMovement();
-        bool _wasGrounded = _pGrounded;
+        ProcessHorizontalMovement();
+        //ProcessJumping();
+
+        /*bool _wasGrounded = _pGrounded;
         _pGrounded = false;
 
         Collider2D[] colliders2D = Physics2D.OverlapCircleAll(_groundCheck.position, _groundRadius, _whatIsGround);
@@ -80,32 +82,28 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-        }
+        }*/
 
 
 
     }
 
-    void ProcessMovement(){
-        if (GameManager._singletonVar._gamePaused ||
-            GameManager._singletonVar._gameOver) return;
+    public void ProcessJump(){
+        Debug.Log("Tammmoun is jumping..");
+        _isJumping = true;
+        rb2d.AddForce(new Vector2(0f, jumpingFactor) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+    }
 
-        if (GameManager._singletonVar._gamePaused ||
-          GameManager._singletonVar._gameOver) return;
-        _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
-        //_dirY = CrossPlatformInputManager.GetAxis("Vertical") * _jumpFactor;
-
-        //_dirX = Input.GetAxisRaw("Horizontal") * _moveSpeed;
-        _animator.SetFloat("Speed", Mathf.Abs(_dirX));
-        //_animator.SetBool("Run", true);
-
+    void ProcessJumping(){
         if (CrossPlatformInputManager.GetButtonDown("Jump") )
         {
+            _isJumping = true;
             //&& rb2d.velocity.y == 0
-
-            Debug.Log("Current Y: " + rb2d.transform.position.y);
-            transform.Translate(0f, transform.position.y + _jumpFactor * Time.fixedDeltaTime, 0f);    
-         /*   rb2d.velocity = Vector2.up * _jumpFactor;
+            rb2d.AddForce(new Vector2(0f, jumpingFactor) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+           /* Debug.Log("Current Y: " + rb2d.transform.position.y);
+            Vector2 newVec = new Vector3(0f, transform.position.y);
+            rb2d.AddForce(newVec * _jumpFactor * Time.fixedDeltaTime);
+         /  rb2d.velocity = Vector2.up * _jumpFactor;
             AudioManager.i.PlaySound(AudioManager.i.gameSFX[2]);
             _jump = true;
             _animator.SetBool("isJumping", _jump);
@@ -115,8 +113,31 @@ public class PlayerController : MonoBehaviour
            rb2d.AddForce(new Vector2(0 ,_dirY * Time.fixedDeltaTime));
              //rb2d.velocity = new Vector2(0f, _jumpFactor);*/
         }
+    }
+
+    void ProcessHorizontalMovement(){
+        if(_isJumping == true) return;
+        if (GameManager._singletonVar._gamePaused ||
+            GameManager._singletonVar._gameOver) return;
+
+        if (GameManager._singletonVar._gamePaused ||
+          GameManager._singletonVar._gameOver) return;
+
+        if(CrossPlatformInputManager.GetButtonDown("Jump")){
+            Debug.Log("Checking....");
+            rb2d.AddForce(new Vector2(0f, jumpingFactor) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        }
+
+        _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
+        //_dirY = CrossPlatformInputManager.GetAxis("Vertical") * _jumpFactor;
+
+        //_dirX = Input.GetAxisRaw("Horizontal") * _moveSpeed;
+        _animator.SetFloat("Speed", Mathf.Abs(_dirX));
+        _animator.SetBool("Run", true);
+
         
-        rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
+        
+        rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, transform.position.y);
 
 
         //Process Left, Right Animation and Flipping player side when needed..
@@ -141,20 +162,17 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void JumpButtonClicked(){
-        //Vector2 jumpingVector = new Vector2(0f, 2f);
-        rb2d.AddForce(Vector2.up * _jumpFactor, ForceMode2D.Impulse);	
-    }
 
 
-    public void OnLadning()
+
+   /* public void OnLadning()
     {
         _jump = false;
        
         _animator.SetBool("isJumping", _jump);
         StartCoroutine(ProcessDustCreationWithDelay(0.5f));
         //AudioManager.i.PlaySound(AudioManager.i.gameSFX[1]);
-    }
+    }*/
 
      // TODO
     public void OnSliding(bool isSliding)
