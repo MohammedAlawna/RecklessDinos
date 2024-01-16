@@ -5004,26 +5004,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1668662402945609899}
   _moveSpeed: 250
-  _jumpFactor: 100
+  jumpingFactor: 800
   _isMoving: 0
-  _jump: 0
+  _isJumping: 0
   m_MovementSmoothing: 0.08
   dust: {fileID: 1340159475}
-  _movement: {fileID: 0}
-  _groundCheck: {fileID: 1668662403225878743}
-  _ceilingCheck: {fileID: 1668662401748637568}
-  _groundRadius: 0.2
-  _whatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
   _immuneDuration: 0.35
   projectileSpeed: 10
   _isImmune: 0
-  _coinNumbPrefab: {fileID: 0}
+  _coinNumbPrefab: {fileID: 8972827865772801221, guid: 7af06cd99cc651349a28872620a3b329, type: 3}
   _knifePrefab: {fileID: 8980661665116992711, guid: 06fa30c8daf961e4da3c8e6b86dd3152, type: 3}
-  onLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  _groundCheck: {fileID: 1668662403225878743}
 --- !u!1 &1668662403225878740
 GameObject:
   m_ObjectHideFlags: 0

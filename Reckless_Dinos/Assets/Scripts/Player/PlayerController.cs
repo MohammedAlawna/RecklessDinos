@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log("Tammmoun is jumping..");
         _isJumping = true;
+        _animator.SetBool("isJumping", true);
         rb2d.AddForce(new Vector2(0f, jumpingFactor) * Time.fixedDeltaTime, ForceMode2D.Impulse);
         
     }
@@ -250,8 +251,8 @@ public void Attack()
     {
         //Check if Grounded
         if(collision.collider.tag == "Ground"){
-            Debug.Log("You Are Grounded to Tammoun..!");
             _isJumping = false;
+            _animator.SetBool("isJumping", false);
         }
         if(collision.collider.tag != "Ground"){
             _isJumping = true;
@@ -284,6 +285,20 @@ public void Attack()
 
         
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+
+        //If Collided with Coin:
+        if(other.tag == "Coin"){
+            AudioManager.i.PlaySound(AudioManager.i.gameSFX[3]);
+            GameManager._singletonVar.IncrementScore(1);
+            
+             var vfxObject = Instantiate(_coinNumbPrefab, other.transform.position, 
+                Quaternion.identity);
+            Destroy(vfxObject, 0.23f);
+            Destroy(other.gameObject);
+        }
     }
 
   /*  private void OnTriggerEnter2D(Collider2D collision)
