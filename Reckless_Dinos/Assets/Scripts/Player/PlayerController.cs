@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     float _dirY;
     public bool _isMoving = false;
     public bool _isJumping = false;
+    
     bool _pFacingRight = true;
     [SerializeField] [Range(0, 1)] float m_MovementSmoothing;
     Vector2 m_Velocity = Vector3.zero;
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void ProcessHorizontalMovement(){
+       
         if(_isJumping == true) return;
         if (GameManager._singletonVar._gamePaused ||
             GameManager._singletonVar._gameOver) return;
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
 
         _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
 
+     
         _animator.SetFloat("Speed", Mathf.Abs(_dirX));
         _animator.SetBool("Run", true);
 
@@ -143,13 +146,26 @@ public class PlayerController : MonoBehaviour
     }
     
     
+    //OnMoveButton Clicked (Fix Buggy Character)
+    public void EnableRunningAnimation(){
+        _animator.SetBool("Run", true);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Disable Animation If Collided (Separate function for enabling it..)
+        if(collision.collider.tag == "Other"){
+        
+           _animator.SetBool("Run", false);
+           
+        }
+      
+        
         //Check if Grounded
         if(collision.collider.tag == "Ground"){
-            _isJumping = false;
             _animator.SetBool("isJumping", false);
+            _isJumping = false;
+            
         }
         if(collision.collider.tag != "Ground"){
             _isJumping = true;
