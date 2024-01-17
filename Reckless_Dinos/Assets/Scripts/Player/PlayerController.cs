@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     Vector2 m_Velocity = Vector3.zero;
     public ParticleSystem dust; 
 
-
     [Header("PlayerController")]
     //public PlayerMovement _movement;
     //[SerializeField] private Transform _groundCheck;
@@ -33,15 +32,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _immuneDuration = 0.35f;
     [SerializeField] float projectileSpeed = 10f;
 
-    //bool _pGrounded;
+    public bool isCollided = false;
     [SerializeField] bool _isImmune = false;
 
     [SerializeField] GameObject _coinNumbPrefab;
     [SerializeField] GameObject _knifePrefab; 
 
     //[SerializeField] GameObject _groundCheck; 
-
-
 
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
@@ -59,8 +56,17 @@ public class PlayerController : MonoBehaviour
     }
 
     void ProcessHorizontalMovement(){
-       
+        
+
+        if(isCollided == true) {
+           _isJumping = false;
+           /* Vector3 defectionFactor = new Vector3(-0.003f, 0f, 0f);
+            transform.position += defectionFactor;*/
+            _animator.SetBool("Run", false);
+            return;
+        }
         if(_isJumping == true) return;
+
         if (GameManager._singletonVar._gamePaused ||
             GameManager._singletonVar._gameOver) return;
 
@@ -69,34 +75,40 @@ public class PlayerController : MonoBehaviour
 
         _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
 
-     
-        _animator.SetFloat("Speed", Mathf.Abs(_dirX));
-        _animator.SetBool("Run", true);
+    
+  
 
-        
-        rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, transform.position.y);
-
-
-        //Process Left, Right Animation and Flipping player side when needed..
-        if(_dirX == 0){
+        if(/*isCollided == true &&*/ _dirX == 0){
             _animator.SetBool("Run", false);
         }
 
+        if(/*isCollided == true ||*/ _dirX == 0){
+            _animator.SetBool("Run", false);
+           // _dirX = 0;
+        }
 
+        if(/*isCollided == false && */_dirX > 0 || _dirX < 0)
+        {
+            isCollided = false;
+           //_animator.SetFloat("Speed", Mathf.Abs(_dirX));
+           _animator.SetBool("Run", true);
+        }
+        
+        
+        rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
+
+        
         if (_dirX > 0 && !_pFacingRight )
         {
             Flip();
-            _animator.SetBool("Run", true);
+           // _animator.SetBool("Run", true);
         }
 
-     if(_dirX < 0 && _pFacingRight)
+        if(_dirX < 0 && _pFacingRight)
         {
-            _animator.SetBool("Run", true);
+           // _animator.SetBool("Run", true);
             Flip();
         }
-        
-
-        
     }
 
      // TODO
@@ -153,18 +165,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        isCollided = true;
+        _animator.SetBool("Run", false);
         //Disable Animation If Collided (Separate function for enabling it..)
-        if(collision.collider.tag == "Other"){
-        
+      /*  if(collision.collider.tag == "Other"){
            _animator.SetBool("Run", false);
            
-        }
+        }*/
       
         
         //Check if Grounded
         if(collision.collider.tag == "Ground"){
             _animator.SetBool("isJumping", false);
             _isJumping = false;
+            isCollided = false;
             
         }
         if(collision.collider.tag != "Ground"){
