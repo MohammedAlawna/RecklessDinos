@@ -59,10 +59,12 @@ public class PlayerController : MonoBehaviour
         
 
         if(isCollided == true) {
-           _isJumping = false;
+           //_isJumping = false;
            /* Vector3 defectionFactor = new Vector3(-0.003f, 0f, 0f);
             transform.position += defectionFactor;*/
-            _animator.SetBool("Run", false);
+           //_animator.SetBool("Run", false);
+           // _animator.SetBool("isJumping", false);
+           // isCollided = false;
             return;
         }
         if(_isJumping == true) return;
@@ -156,6 +158,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         dust.Stop();
     }
+    IEnumerator ProcessCollidingWithOthers(float waitTime){
+        _isJumping = false;
+        isCollided = true;
+      //  transform.position += new Vector3(-0.2f, 0f, 0f);
+        yield return new WaitForSeconds(waitTime);
+        isCollided = false;
+    }
     
     
     //OnMoveButton Clicked (Fix Buggy Character)
@@ -165,13 +174,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isCollided = true;
-        _animator.SetBool("Run", false);
+        
         //Disable Animation If Collided (Separate function for enabling it..)
-      /*  if(collision.collider.tag == "Other"){
+        if(collision.collider.tag == "Other"){
            _animator.SetBool("Run", false);
-           
-        }*/
+           StartCoroutine(ProcessCollidingWithOthers(0.20f));
+    //    _animator.SetBool("Run", false);
+        }
+      
       
         
         //Check if Grounded
@@ -181,7 +191,7 @@ public class PlayerController : MonoBehaviour
             isCollided = false;
             
         }
-        if(collision.collider.tag != "Ground"){
+        if(collision.collider.tag != "Ground" && collision.collider.tag != "Other"){
             _isJumping = true;
         }
 
