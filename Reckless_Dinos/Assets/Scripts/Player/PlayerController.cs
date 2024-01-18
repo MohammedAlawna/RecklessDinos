@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
            //_isJumping = false;
            /* Vector3 defectionFactor = new Vector3(-0.003f, 0f, 0f);
             transform.position += defectionFactor;*/
-           //_animator.SetBool("Run", false);
+           _animator.SetBool("Run", false);
            // _animator.SetBool("isJumping", false);
            // isCollided = false;
             return;
