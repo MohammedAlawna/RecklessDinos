@@ -69,6 +69,9 @@ public class PlayerController : MonoBehaviour
         }
         if(_isJumping == true) return;
 
+        if(!_isJumping) _animator.SetBool("isJumping", false);
+        
+
         if (GameManager._singletonVar._gamePaused ||
             GameManager._singletonVar._gameOver) return;
 
