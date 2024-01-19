@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     public void ProcessJump(){
         _isJumping = true;
         _animator.SetBool("isJumping", true);
-        rb2d.AddForce(new Vector2(0f, jumpingFactor) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        rb2d.AddForce(new Vector2(0f, jumpingFactor) * Time.DeltaTime, ForceMode2D.Impulse);
     }
 
     void ProcessHorizontalMovement(){
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         }
         
         
-        rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
+        rb2d.velocity = new Vector2(_dirX * Time.deltaTime, 0f);
 
         
         if (_dirX > 0 && !_pFacingRight )
