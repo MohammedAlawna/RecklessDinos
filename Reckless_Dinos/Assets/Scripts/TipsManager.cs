@@ -43,7 +43,7 @@ public class TipsManager : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Collided with TipsBox");
+            //Debug.Log("Collided with TipsBox");
             _showGameTips = true;
         }
 

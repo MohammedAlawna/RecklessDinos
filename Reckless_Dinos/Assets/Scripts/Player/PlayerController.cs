@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         ProcessHorizontalMovement();
     }
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     public void ProcessJump(){
         _isJumping = true;
         _animator.SetBool("isJumping", true);
-        rb2d.AddForce(new Vector2(0f, jumpingFactor) * Time.DeltaTime, ForceMode2D.Impulse);
+        rb2d.AddForce(new Vector2(0f, jumpingFactor) * Time.fixedDeltaTime, ForceMode2D.Impulse);
     }
 
     void ProcessHorizontalMovement(){
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
         _dirX = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
 
-    
+  
   
 
         if(/*isCollided == true &&*/ _dirX == 0){
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         }
         
         
-        rb2d.velocity = new Vector2(_dirX * Time.deltaTime, 0f);
+        rb2d.velocity = new Vector2(_dirX * Time.fixedDeltaTime, 0f);
 
         
         if (_dirX > 0 && !_pFacingRight )
@@ -180,8 +180,9 @@ public class PlayerController : MonoBehaviour
         
         //Disable Animation If Collided (Separate function for enabling it..)
         if(collision.collider.tag == "Other"){
-           _animator.SetBool("Run", false);
-           StartCoroutine(ProcessCollidingWithOthers(0.20f));
+            _isJumping = false;
+            _animator.SetBool("Run", false);
+          // StartCoroutine(ProcessCollidingWithOthers(0.20f));
     //    _animator.SetBool("Run", false);
         }
       
@@ -194,9 +195,12 @@ public class PlayerController : MonoBehaviour
             isCollided = false;
             
         }
-        if(collision.collider.tag != "Ground" && collision.collider.tag != "Other"){
+
+        if (collision.collider.tag != "Ground" && collision.collider.tag != "Other"){
             _isJumping = true;
         }
+
+        
 
         //TODO Add immune duratrion (with some blinking to the player)
         //TODO Don't forget enemyAI script! 
@@ -205,9 +209,10 @@ public class PlayerController : MonoBehaviour
             GameManager._singletonVar.TakeDamage(1);
         }
 
-        if(collision.collider.tag == "Coin")
+      /* if(collision.collider.tag == "Coin")
         {
-            AudioManager.i.PlaySound(AudioManager.i.gameSFX[3]);
+            _isJumping = false;
+            //AudioManager.i.PlaySound(AudioManager.i.gameSFX[3]);
             GameManager._singletonVar.IncrementScore(1);
             
 
@@ -216,24 +221,27 @@ public class PlayerController : MonoBehaviour
             Destroy(vfxObject, 0.23f);
             Destroy(collision.gameObject);
 
-        }
-        if(collision.collider.tag == "Door")
+        }*/
+      /*  if(collision.collider.tag == "Door")
         {
             
             GameManager._singletonVar.ShowGameWinnerPanel();
-        }
+        }*/
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         //If Collided with Coin:
         if(other.tag == "Coin"){
-            AudioManager.i.PlaySound(AudioManager.i.gameSFX[3]);
-            GameManager._singletonVar.IncrementScore(1);
+            /* var vfxObject = Instantiate(_coinNumbPrefab, other.transform.position,
+                  Quaternion.identity);
+
+             //Destroy(vfxObject, 0.13f);*/
             
-             var vfxObject = Instantiate(_coinNumbPrefab, other.transform.position, 
-                Quaternion.identity);
-            Destroy(vfxObject, 0.23f);
+            GameManager._singletonVar.IncrementScore(1);
+            AudioManager.i.PlaySound(AudioManager.i.gameSFX[3]);
             Destroy(other.gameObject);
         }
     }
+
+  
 }
