@@ -5423,7 +5423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5193715964640222145, guid: be0f1b65c65948a4f84dc399147aae94, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Other
       objectReference: {fileID: 0}
     - target: {fileID: 5193715964640222147, guid: be0f1b65c65948a4f84dc399147aae94, type: 3}
       propertyPath: m_RootOrder
@@ -12375,7 +12375,7 @@ GameObject:
   - component: {fileID: 2067024221}
   m_Layer: 0
   m_Name: BlockGroup
-  m_TagString: Ground
+  m_TagString: Other
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13190,7 +13190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5193715964640222145, guid: be0f1b65c65948a4f84dc399147aae94, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Other
       objectReference: {fileID: 0}
     - target: {fileID: 5193715964640222147, guid: be0f1b65c65948a4f84dc399147aae94, type: 3}
       propertyPath: m_RootOrder

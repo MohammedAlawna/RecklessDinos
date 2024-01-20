@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     float _dirY;
     public bool _isMoving = false;
     public bool _isJumping = false;
+    public bool _isGrounded = false;
     
     bool _pFacingRight = true;
     [SerializeField] [Range(0, 1)] float m_MovementSmoothing;
@@ -67,7 +68,11 @@ public class PlayerController : MonoBehaviour
            // isCollided = false;
             return;
         }
-        if(_isJumping == true) return;
+        if (_isJumping == true)
+        {
+            _isGrounded = true;
+            return;
+        }
 
         if(!_isJumping) _animator.SetBool("isJumping", false);
         
@@ -177,11 +182,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
         //Disable Animation If Collided (Separate function for enabling it..)
         if(collision.collider.tag == "Other"){
             _isJumping = false;
+            _isGrounded = false;
             _animator.SetBool("Run", false);
+            rb2d.gravityScale = 70f;
           // StartCoroutine(ProcessCollidingWithOthers(0.20f));
     //    _animator.SetBool("Run", false);
         }
@@ -193,18 +199,29 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("isJumping", false);
             _isJumping = false;
             isCollided = false;
+            _isGrounded = true;
+            rb2d.gravityScale = 4.1f;
             
         }
 
         if (collision.collider.tag != "Ground" && collision.collider.tag != "Other"){
             _isJumping = true;
+            _isGrounded = false;
+            rb2d.gravityScale = 4.1f;
         }
 
-        
+        if(_isGrounded == false && _isJumping == false)
+        {
+            //Apply Gravity (Fix and avoid weird gravity behavior of object)
+            rb2d.gravityScale = 40f;
+            //Debug.Log("Gravity Fixator Started.. o3o");
+        }
+
+
 
         //TODO Add immune duratrion (with some blinking to the player)
         //TODO Don't forget enemyAI script! 
-        if(collision.collider.tag == "Enemy" && !_isImmune)
+        if (collision.collider.tag == "Enemy" && !_isImmune)
         {
             GameManager._singletonVar.TakeDamage(1);
         }
